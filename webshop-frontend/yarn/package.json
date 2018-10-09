@@ -1,0 +1,9 @@
+{
+  "name": "yarn",
+  "private": true,
+  "version": "0.0.1",
+  "description": "Private package where yarn version used by the project is installed",
+  "devDependencies": {
+    "yarn": "1.7.0"
+  }
+}

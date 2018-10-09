@@ -1,0 +1,5 @@
+<p-megaMenu [model]="items"></p-megaMenu>
+<p *ngIf="user">
+  {{user.name}} - {{user.authorities[0].authority}}
+</p>
+<router-outlet></router-outlet>
