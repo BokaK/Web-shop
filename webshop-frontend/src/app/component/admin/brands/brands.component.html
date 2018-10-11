@@ -1,0 +1,71 @@
+<div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid">
+  <div class="ui-grid-row">
+    <div class="ui-grid-col-6">
+      <p-fieldset [legend]="'Додади/Измени компанија'">
+        <form [formGroup]="brandForm">
+          <div class="ui-grid-row">
+            <div class="ui-grid-col-5">
+              Име на компанија:
+            </div>
+            <div class="ui-grid-col-7">
+              <input pInputText type="text" placeholder="Име" formControlName="brandName"/>
+            </div>
+            <div class="ui-grid-row">
+              <p-message severity="error" text="Ве молиме внесете го името на компанијата"
+                         *ngIf="brandForm.controls['brandName'].errors && submited"></p-message>
+            </div>
+          </div>
+          <div class="ui-grid-row">
+            <div class="ui-grid-col-12">
+              <p-button type="button" class="float-right" (onClick)="saveBrand()" label="Зачувај"></p-button>
+              <p-button type="button" class="float-right" (onClick)="newBrand()" label="Нова компанија"></p-button>
+            </div>
+          </div>
+        </form>
+      </p-fieldset>
+    </div>
+    <div class="ui-grid-col-6">
+      <p-table #dt [columns]="cols" [value]="brands" [paginator]="true" [rows]="10">
+        <ng-template pTemplate="caption">
+          Компании
+        </ng-template>
+        <ng-template pTemplate="header" let-columns>
+          <tr>
+            <th *ngFor="let col of columns" class="text-center" [pSortableColumn]="col.field">
+              {{col.header}}
+              <p-sortIcon [field]="col.field" ariaLabel="Activate to sort"
+                          ariaLabelDesc="Activate to sort in descending order"
+                          ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+            </th>
+            <th></th>
+          </tr>
+          <tr>
+            <th>
+              <input pInputText type="text" (input)="dt.filter($event.target.value, 'brandName', 'contains')">
+            </th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rowData let-columns="columns">
+          <tr>
+            <td>
+              {{rowData.brandName}}
+            </td>
+            <td>
+              <p-button (onClick)="changeBrand(rowData)" label="Измени"  class="ui-button-raised ui-button-rounded"></p-button>
+              <p-button (onClick)="showDialog(rowData)" label="Избриши"
+                        class="ui-button-rounded ui-button-danger"></p-button>
+            </td>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+</div>
+
+<p-dialog header="Избриши компанија" [(visible)]="displayDialog" [modal]="true" [responsive]="true" [width]="350" [minWidth]="200" [minY]="70"
+          [maximizable]="true" [baseZIndex]="10000">
+    <span>Дали сте сигурни дека сакате да ја избришете компанијата?</span>
+  <p-footer>
+    <button type="button" pButton icon="pi pi-check" (click)="displayDialog=false; deleteBrand()" label="Да"></button>
+    <button type="button" pButton icon="pi pi-close" (click)="displayDialog=false" label="Не" class="ui-button-secondary"></button>
+  </p-footer>
+</p-dialog>

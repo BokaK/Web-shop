@@ -16,7 +16,7 @@ export class AuthenticationService extends DefaultService {
       .set('username', ussername)
       .set('password', password);
 
-    return this.http.post('/login',
+    return this.http.post(this.apiUrl + '/login',
       body.toString(),
       {
         headers: new HttpHeaders()

@@ -3,10 +3,10 @@ import {UserService} from '../../service/user.service';
 import {MenuItem} from 'primeng/api';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html'
+  selector: 'app-user',
+  templateUrl: './user.component.html'
 })
-export class HomeComponent implements OnInit {
+export class UserComponent implements OnInit {
 
   items: MenuItem[];
   user: any;
@@ -27,10 +27,10 @@ export class HomeComponent implements OnInit {
       }
     ];
 
-    this.userService.getAuthenticatedUser().subscribe(data => {
-      console.log(data);
-      this.user = data;
-    });
+    // this.userService.getAuthenticatedUser().subscribe(data => {
+    //   this.user = data;
+    // });
+    console.log('vo user');
   }
 
 }

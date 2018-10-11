@@ -1,6 +1,11 @@
 package com.webshop.service;
 
+import com.webshop.model.Part;
+
+import java.util.List;
+
 public interface PartService {
 
-    String getAllParts();
+    List<Part> getAllParts();
+    void insertPart(Part part);
 }

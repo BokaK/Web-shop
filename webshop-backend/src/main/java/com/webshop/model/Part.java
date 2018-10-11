@@ -30,6 +30,6 @@ public class Part extends BaseEntity {
     private int stockNumber;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "brandName_id")
-    private Brand brandName;
+    @JoinColumn(name = "brand_id")
+    private Brand brand;
 }

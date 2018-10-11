@@ -1,0 +1,28 @@
+parts
+<p-dataView #dataView [value]="parts" [sortField]="sortField" [sortOrder]="sortOrder" [filterBy]="filterKey">
+  <p-header>
+    <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
+    <p-dropdown [options]="sortOptions" [(ngModel)]="sortKey" placeholder="Sort By"
+                (onChange)="onSortChange($event)" [autoWidth]="false" [style]="{'min-width':'15em'}"></p-dropdown>
+    <input type="search" pInputText placeholder="Search by brand" (keyup)="dataView.filter($event.target.value)">
+    <p-dropdown [options]="sortOptions" [(ngModel)]="filterKey" placeholder="Filter By"
+                [autoWidth]="false" [style]="{'min-width':'15em'}"></p-dropdown>
+  </p-header>
+  <ng-template let-part pTemplate="listItem">
+    <div>
+      {{part.id}} - {{part.description}} - {{part.price}} - {{part.brand.brandName}}
+    </div>
+  </ng-template>
+  <ng-template let-part pTemplate="gridItem">
+    <div class="ui-g-12 ui-md-3">
+      {{part.brand.brandName}}
+    </div>
+  </ng-template>
+  <ng-template pTemplate="paginatorleft" let-state>
+    {{state.first}}
+    <button type="button" pButton icon="fa-refresh"></button>
+  </ng-template>
+  <ng-template pTemplate="paginatorright">
+    <button type="button" pButton icon="fa-cloud-upload"></button>
+  </ng-template>
+</p-dataView>

@@ -1,4 +1,4 @@
-package com.webshop.controller;
+package com.webshop.controller.admin;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -11,14 +11,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
+
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/admin/user")
 @AllArgsConstructor
-public class UserController {
+public class AdminUserController {
 
     private final ObjectMapper objectMapper;
+
     @GetMapping(value = "/")
-    public ResponseEntity<String> getAuthenticatedUser() {
+    public ResponseEntity<String> getAuthenticatedUser(HttpServletRequest request) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String json = "";
         try {

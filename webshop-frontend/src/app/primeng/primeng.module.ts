@@ -8,8 +8,10 @@ import {
   PasswordModule,
   MenuModule,
   MenubarModule,
-  MegaMenuModule
+  MegaMenuModule, DropdownModule, DialogModule
 } from 'primeng/primeng';
+import {DataViewModule} from 'primeng/dataview';
+import {TableModule} from 'primeng/table';
 
 @NgModule({
   imports: [
@@ -22,7 +24,11 @@ import {
     ButtonModule,
     MenuModule,
     MenubarModule,
-    MegaMenuModule
+    MegaMenuModule,
+    DataViewModule,
+    DropdownModule,
+    TableModule,
+    DialogModule
   ],
   exports: [
     AccordionModule,
@@ -34,7 +40,11 @@ import {
     ButtonModule,
     MenuModule,
     MenubarModule,
-    MegaMenuModule
+    MegaMenuModule,
+    DataViewModule,
+    DropdownModule,
+    TableModule,
+    DialogModule
   ]
 })
 export class PrimengModule { }

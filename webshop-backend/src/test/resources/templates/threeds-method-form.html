@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Identifying...</title>
+</head>
+<body>
+    <script>
+        var tdsMethodValue='%tdsMethod$';
+
+        var form = document.createElement("form");
+        form.setAttribute("method", "post");
+        form.setAttribute("action", "%notificationURL$");
+
+        addParameter(form, "threeDSMethodData", tdsMethodValue);
+
+        document.body.appendChild(form);
+        form.submit();
+
+        function addParameter(form, key, value) {
+            var hiddenField = document.createElement("input");
+            hiddenField.setAttribute("type", "hidden");
+            hiddenField.setAttribute("name", key);
+            hiddenField.setAttribute("value", value);
+            form.appendChild(hiddenField);
+        }
+    </script>
+</body>
+</html>

@@ -12,17 +12,25 @@ import {UserService} from './service/user.service';
 import {DefaultService} from './service/default.service';
 import {HttpClientModule} from '@angular/common/http';
 import {AuthenticationService} from './service/authentication.service';
-import {HomeComponent} from './component/home/home.component';
-import {PartComponent} from './component/part/part.component';
-import {AuthGuard} from './service/auth.guard';
-import {AuthService} from './service/auth.service';
+import {UserComponent} from './component/user/user.component';
+import {AdminComponent} from './component/admin/admin.component';
+import {AdminPartsComponent} from './component/admin/parts/parts.component';
+import {AdminOrdersComponent} from './component/admin/orders/orders.component';
+import {AdminUsersComponent} from './component/admin/users/users.component';
+import {PartService} from './service/part.service';
+import {AdminBrandsComponent} from './component/admin/brands/brands.component';
+import {BrandService} from './service/brand.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    HomeComponent,
-    PartComponent
+    UserComponent,
+    AdminComponent,
+    AdminPartsComponent,
+    AdminOrdersComponent,
+    AdminUsersComponent,
+    AdminBrandsComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +42,7 @@ import {AuthService} from './service/auth.service';
     HttpClientModule,
     RouterModule.forRoot(ROUTES)
   ],
-  providers: [DefaultService, UserService, AuthService, AuthGuard, AuthenticationService],
+  providers: [DefaultService, UserService, AuthenticationService, PartService, BrandService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
