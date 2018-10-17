@@ -1,0 +1,75 @@
+@import 'mixins';
+
+//--- Colors ---
+$color-text: #565656;
+$color-text-dark: #000;
+$color-text-invert: white;
+$color-primary: #456089;
+$color-active: #4E72A9;
+
+$color-selection: #e4eaf1;
+$color-bkg-light: #fafafa;
+$color-separator: #ddd;
+
+$color-input-border: #9a9a9a;
+$color-regular-border: #9a9a9a;
+$color-bkg-dark: #ebebeb;
+$color-search-bkg: #f3f3f3;
+$color-search-border: #bfbfbf;
+$color-disabled: #ccc;
+
+
+
+$color-alert: #e62700;
+$color-alert-bkg: #f5dbd9;
+$color-alert-border: #ebafa6;
+$color-alert-icon: #c92100;
+$color-alert-bkg-invert: #c92100;
+$color-warning: #efb003;
+$color-warning-bkg: #feecb5;
+$color-warning-border:#efd603;
+$color-success: #318700;
+
+
+//--- Fonts ---
+$font-family: 'OpenSans', Helvetica, Arial, sans-serif;
+$font-weight: 400;
+$font-weight-light: 300;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+
+$font-size: 14px;
+$font-size-button: 11px;
+$font-size-input: 13px;
+$font-size-valdr: 9px;
+
+// --- Icon sizes ---
+$icon-size-x-small: 14px;
+$icon-size-small: 18px;
+$icon-size-medium: 20px;
+
+$primary-font: setFont($font-weight, $font-size, 24px, $font-family);
+$primary-font-h3: setFont($font-weight-light, 22px, 24px, $font-family);
+$primary-font-h4: setFont($font-weight-light, 18px, 24px, $font-family);
+$primary-font-h5: setFont($font-weight-semibold, 16px, 26px, $font-family);
+$card-header-font: setFont($font-weight-light, 18px, 24px, $font-family);
+$btn-font: setFont($font-weight, $font-size-button, 15px, $font-family);
+$table-header-font: setFont($font-weight-semibold, $font-size-button, 15px, $font-family);
+
+//--- Spacing ---
+$space-xxs: .05rem;
+$space-xs: .25rem;
+$space-s: .5rem;
+$space-m: 1rem;
+$space-l: 1.5rem;
+$space-xl: 2rem;
+$space-button-icon: 2.5rem;
+$space-xxl: 3rem;
+
+$arrow-spacing: .55rem;
+$cr-size: 1.2rem;
+$label-width: 200px;
+$offset-margin: 15px;
+
+//--- Styling ---
+$border-radius: 3px;

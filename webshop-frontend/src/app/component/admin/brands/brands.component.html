@@ -1,5 +1,6 @@
 <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid">
   <div class="ui-grid-row">
+    <div class="ui-grid-col-3"></div>
     <div class="ui-grid-col-6">
       <p-fieldset [legend]="'Додади/Измени компанија'">
         <form [formGroup]="brandForm">
@@ -17,15 +18,15 @@
           </div>
           <div class="ui-grid-row">
             <div class="ui-grid-col-12">
-              <p-button type="button" class="float-right" (onClick)="saveBrand()" label="Зачувај"></p-button>
-              <p-button type="button" class="float-right" (onClick)="newBrand()" label="Нова компанија"></p-button>
+              <button pButton type="button" class="float-right ui-button-success"
+                      (click)="saveBrand()" label="Зачувај"></button>
+              <button pButton type="button" icon="fa fa-refresh"
+                      class="float-right ui-button-secondary btnWithRightMargin" (click)="newBrand()"></button>
             </div>
           </div>
         </form>
       </p-fieldset>
-    </div>
-    <div class="ui-grid-col-6">
-      <p-table #dt [columns]="cols" [value]="brands" [paginator]="true" [rows]="10">
+      <p-table #dt [columns]="cols" [value]="brands" [paginator]="true" [rows]="10" [style]="{'margin-top': '20px'}" >
         <ng-template pTemplate="caption">
           Компании
         </ng-template>
@@ -43,6 +44,7 @@
             <th>
               <input pInputText type="text" (input)="dt.filter($event.target.value, 'brandName', 'contains')">
             </th>
+            <th></th>
           </tr>
         </ng-template>
         <ng-template pTemplate="body" let-rowData let-columns="columns">
@@ -51,9 +53,10 @@
               {{rowData.brandName}}
             </td>
             <td>
-              <p-button (onClick)="changeBrand(rowData)" label="Измени"  class="ui-button-raised ui-button-rounded"></p-button>
-              <p-button (onClick)="showDialog(rowData)" label="Избриши"
-                        class="ui-button-rounded ui-button-danger"></p-button>
+              <button pButton (click)="changeBrand(rowData)" label="Измени"
+                      class="ui-button-raised ui-button-rounded ui-button-secondary btnWithRightMargin"></button>
+              <button pButton (click)="showDialog(rowData)" label="Избриши"
+                      class="ui-button-rounded ui-button-danger"></button>
             </td>
         </ng-template>
       </p-table>
@@ -65,7 +68,8 @@
           [maximizable]="true" [baseZIndex]="10000">
     <span>Дали сте сигурни дека сакате да ја избришете компанијата?</span>
   <p-footer>
-    <button type="button" pButton icon="pi pi-check" (click)="displayDialog=false; deleteBrand()" label="Да"></button>
-    <button type="button" pButton icon="pi pi-close" (click)="displayDialog=false" label="Не" class="ui-button-secondary"></button>
+    <button type="button" pButton icon="pi pi-check" (click)="displayDialog=false; deleteBrand()"
+            label="Да" class="ui-button-danger btnWithRightMargin"></button>
+    <button type="button" pButton icon="fa fa-close" (click)="displayDialog=false" label="Не" class="ui-button-secondary"></button>
   </p-footer>
 </p-dialog>

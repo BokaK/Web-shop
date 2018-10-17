@@ -26,12 +26,13 @@
               "src/favicon.png"
             ],
             "styles": [
-              "src/styles.css",
-//              "node_modules/font-awesome/css/font-awesome.min.css",
+              "node_modules/font-awesome/css/font-awesome.min.css",
               "node_modules/primeicons/primeicons.css",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "node_modules/primeng/resources/themes/start/theme.css",
-              "node_modules/primeng/resources/primeng.min.css"
+              "node_modules/primeng/resources/primeng.min.css",
+              "node_modules/primeng/resources/themes/flick/theme.css",
+              "src/styles.css",
+              "src/app/helpers/general.scss"
             ],
             "scripts": []
           },

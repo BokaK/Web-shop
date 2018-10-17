@@ -1,12 +1,25 @@
 package com.webshop.controller;
 
+import com.webshop.util.JsonMessageHandler;
+import lombok.AllArgsConstructor;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+
+import javax.servlet.http.HttpServletRequest;
 
 @Controller
+@AllArgsConstructor
 public class ApplicationForwarder {
 
-//    @GetMapping(value = "/admin", headers = "")
-//    public String redirectToAdmin() {
-//        return "login";
-//    }
+    private final JsonMessageHandler jsonMessageHandler;
+
+    @GetMapping(value = "/")
+    public ResponseEntity<String> getAuthenticatedUser(HttpServletRequest request) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String json  = jsonMessageHandler.writeJson(auth);
+        return ResponseEntity.ok(json);
+    }
 }

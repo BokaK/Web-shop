@@ -3,9 +3,11 @@ import {BrandService} from '../../../service/brand.service';
 import {Brand} from '../../../model/brand';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
+// TODO do not insert if form is not valid
 @Component({
   selector: 'app-brands',
-  templateUrl: './brands.component.html'
+  templateUrl: './brands.component.html',
+  styleUrls: ['./brands.component.css']
 })
 export class AdminBrandsComponent implements OnInit {
 

@@ -15,13 +15,13 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.user.type = 'Admin';
-
-    if (this.user.type === 'User') {
-      this.router.navigateByUrl('/user');
-    } else {
-      this.router.navigateByUrl('/admin');
-    }
+    // this.user.type = 'Admin';
+    //
+    // if (this.user.type === 'User') {
+    //   this.router.navigateByUrl('/user');
+    // } else {
+    //   this.router.navigateByUrl('/admin/brands');
+    // }
   }
 
 }

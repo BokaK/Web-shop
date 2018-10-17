@@ -35,7 +35,11 @@ export class LoginComponent implements OnInit {
   login(): void {
     this.authService.attemptAuth(this.loginForm.get('email').value, this.loginForm.get('password').value).subscribe(
       data => {
-        console.log(data);
+        if (data.authorities[0].authority === 'ROLE_ADMIN') {
+          this.router.navigateByUrl('/admin');
+        } else {
+          this.router.navigateByUrl('/user');
+        }
       }
     );
   }

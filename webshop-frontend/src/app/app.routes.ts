@@ -40,7 +40,7 @@ export const ROUTES: Routes = [
   },
   {
     path: '**',
-    redirectTo: '/',
+    redirectTo: '/admin',
   }
 
 ];

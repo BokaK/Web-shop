@@ -1,6 +1,6 @@
 package com.webshop.model.enums;
 
 public enum UserType {
-  ADMIN,
-  CUSTOMER
+  ROLE_ADMIN,
+  ROLE_USER;
 }

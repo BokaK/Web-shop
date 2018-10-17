@@ -1,28 +1,82 @@
-parts
-<p-dataView #dataView [value]="parts" [sortField]="sortField" [sortOrder]="sortOrder" [filterBy]="filterKey">
-  <p-header>
-    <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
-    <p-dropdown [options]="sortOptions" [(ngModel)]="sortKey" placeholder="Sort By"
-                (onChange)="onSortChange($event)" [autoWidth]="false" [style]="{'min-width':'15em'}"></p-dropdown>
-    <input type="search" pInputText placeholder="Search by brand" (keyup)="dataView.filter($event.target.value)">
-    <p-dropdown [options]="sortOptions" [(ngModel)]="filterKey" placeholder="Filter By"
-                [autoWidth]="false" [style]="{'min-width':'15em'}"></p-dropdown>
-  </p-header>
-  <ng-template let-part pTemplate="listItem">
-    <div>
-      {{part.id}} - {{part.description}} - {{part.price}} - {{part.brand.brandName}}
+
+<div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid">
+  <div class="ui-grid-row">
+    <div class="ui-grid-col-5">
+      <p-fieldset [legend]="'Додади/Измени тракторски дел'">
+        <form [formGroup]="partForm">
+          <div class="ui-grid-row">
+            <div class="ui-grid-col-5">
+              Артикал:
+            </div>
+            <div class="ui-grid-col-7">
+              <input pInputText type="text" placeholder="Име" formControlName="name"/>
+            </div>
+            <div class="ui-grid-row">
+              <p-message severity="error" text="Ве молиме внесете го името на компанијата"
+                         *ngIf="partForm.controls['name'].errors && submited"></p-message>
+            </div>
+          </div>
+          <div class="ui-grid-row">
+            <div class="ui-grid-col-5">
+              Опис:
+            </div>
+            <div class="ui-grid-col-7">
+              <input pInputText type="text" placeholder="Име" formControlName="description"/>
+            </div>
+            <div class="ui-grid-row">
+              <p-message severity="error" text="Ве молиме внесете го името на компанијата"
+                         *ngIf="partForm.controls['description'].errors && submited"></p-message>
+            </div>
+          </div>
+          <div class="ui-grid-row">
+            <div class="ui-grid-col-12">
+              <button pButton type="button" class="float-right ui-button-success"
+                      (click)="savePart()" label="Зачувај"></button>
+              <button pButton type="button" icon="fa fa-refresh"
+                      class="float-right ui-button-secondary btnWithRightMargin" (click)="newPart()" label="Нова компанија"></button>
+            </div>
+          </div>
+        </form>
+      </p-fieldset>
     </div>
-  </ng-template>
-  <ng-template let-part pTemplate="gridItem">
-    <div class="ui-g-12 ui-md-3">
-      {{part.brand.brandName}}
+    <div class="ui-grid-col-7">
+      <p-dataView #dataView [value]="parts" [sortField]="sortField" [sortOrder]="sortOrder" [filterBy]="filterKey">
+        <p-header>
+          <div class="ui-grid-row">
+            <div class="ui-grid-col-3">
+              <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
+            </div>
+            <div class="ui-grid-col-3">
+              <p-dropdown [options]="sortOptions" [(ngModel)]="sortKey" placeholder="Sort By"
+                          (onChange)="onSortChange($event)" [autoWidth]="false" [style]="{'min-width':'15em'}"></p-dropdown>
+            </div>
+            <div class="ui-grid-col-3">
+              <input type="search" pInputText placeholder="Search by part" (keyup)="dataView.filter($event.target.value)">
+            </div>
+            <div class="ui-grid-col-3">
+              <p-dropdown [options]="sortOptions" [(ngModel)]="filterKey" placeholder="Filter By"
+                          [autoWidth]="false" [style]="{'min-width':'15em'}"></p-dropdown>
+            </div>
+          </div>
+        </p-header>
+        <ng-template let-part pTemplate="listItem">
+          <div>
+            {{part.id}} - {{part.description}} - {{part.price}} - {{part.part.partName}}
+          </div>
+        </ng-template>
+        <ng-template let-part pTemplate="gridItem">
+          <div class="ui-g-12 ui-md-3">
+            {{part.part.partName}}
+          </div>
+        </ng-template>
+        <ng-template pTemplate="paginatorleft" let-state>
+          {{state.first}}
+          <button type="button" pButton icon="fa-refresh"></button>
+        </ng-template>
+        <ng-template pTemplate="paginatorright">
+          <button type="button" pButton icon="fa-cloud-upload"></button>
+        </ng-template>
+      </p-dataView>
     </div>
-  </ng-template>
-  <ng-template pTemplate="paginatorleft" let-state>
-    {{state.first}}
-    <button type="button" pButton icon="fa-refresh"></button>
-  </ng-template>
-  <ng-template pTemplate="paginatorright">
-    <button type="button" pButton icon="fa-cloud-upload"></button>
-  </ng-template>
-</p-dataView>
+  </div>
+</div>

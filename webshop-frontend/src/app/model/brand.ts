@@ -1,3 +1,5 @@
 export class Brand {
-  public brandName: string;
+
+  id: string;
+  brandName: string;
 }

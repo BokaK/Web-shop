@@ -1,7 +1,8 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
+import {HttpClient, HttpErrorResponse, HttpHeaders, HttpParams} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {DefaultService} from './default.service';
+import {catchError, tap} from 'rxjs/operators';
 
 @Injectable()
 export class AuthenticationService extends DefaultService {
@@ -21,8 +22,10 @@ export class AuthenticationService extends DefaultService {
       {
         headers: new HttpHeaders()
           .set('Content-Type', 'application/x-www-form-urlencoded')
-      }
-    );
+          .set('Accept', 'text/html')
+      }).pipe(catchError(this.handleError));
   }
+
+
 
 }

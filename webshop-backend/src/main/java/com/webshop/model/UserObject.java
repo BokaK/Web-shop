@@ -27,7 +27,7 @@ public class UserObject extends BaseEntity {
     @Enumerated(EnumType.STRING)
     public UserType type;
 
-    @OneToOne
+    @OneToOne(cascade=CascadeType.REMOVE)
     private ContactInfo contactInfo;
 
 }

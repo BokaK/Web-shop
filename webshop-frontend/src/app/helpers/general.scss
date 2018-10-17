@@ -1,0 +1,604 @@
+@import 'typography';
+@import 'variables';
+
+legend {
+  font-size: 18px;
+}
+
+* {
+  font: $primary-font;
+}
+
+body {
+  min-width: 1024px;
+  max-width: 100vw;
+}
+
+
+input {
+  width: 100%;
+  min-width: auto !important;
+}
+.ui-inputtext {
+
+  border: 1px solid $color-input-border;
+
+  &:enabled, &:hover {
+    border: 1px solid $color-input-border;
+  }
+}
+.ui-button.ui-button-success {
+  color: $color-text-invert !important;
+  &:enabled, &:hover {
+    color: $color-text-invert !important;
+  }
+}
+.ui-button {
+  display: inline !important;
+  width: auto !important;
+
+  &:active {
+    color: inherit !important;
+  }
+}
+.ui-button-icon-left {
+  left: 0;
+}
+.ui-widget a {
+  color: $color-text-dark;
+
+  &:focus, &:active, &:visited {
+    color: $color-text-dark;
+  }
+
+  &:hover {
+    background: $color-bkg-dark;
+  }
+}
+
+.ui-state-default {
+  border: none;
+  color: $color-primary;
+  display: inline;
+  width: auto;
+}
+
+a {
+  color: $color-active;
+  text-decoration: none;
+  cursor: pointer;
+
+  &:focus, &:active{
+    color: $color-primary;
+  }
+}
+a.info-link {
+  font-size: 11px;
+  text-decoration: underline;
+}
+
+h3{
+  font: $primary-font-h3;
+  letter-spacing: 0.05rem;
+  margin-bottom: $space-l;
+}
+h4 {
+  font: $primary-font-h4;
+  letter-spacing: 0.05rem;
+}
+h5 {
+  font: $primary-font-h5;
+  letter-spacing: 0.05rem;
+  margin-bottom: $space-l;
+}
+
+hr {
+  border: 0;
+  height: 0;
+  border-bottom: 1px solid $color-separator;
+  margin: 10px 0;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.mr-s{
+  margin-right: $space-s;
+}
+
+.mtb-s {
+  margin: $space-s 0;
+}
+
+.mtb-m {
+  margin: $space-m 0;
+}
+
+.mt-l{
+  margin-top: $space-l;
+}
+.mb-m {
+  margin-bottom: $space-m;
+}
+
+.ui-widget {
+  background-color: transparent;
+}
+
+//----------- form wrappers --------------
+
+.button-wrapper {
+  @include flexbox();
+  @include align-items(center);
+  margin-bottom: $space-s;
+
+  //hack approach for IE11
+  :not(.align-left):first-child {
+    margin-left: auto;
+  }
+  :not(.align-left):first-child:not(.fa):before {
+    content: '';
+  }
+
+  .align-left {
+    margin-right: auto;
+
+    // to enable icon to appear in button-wrapper
+    .file-upload .fa-plus:before {
+      content: '\f093';
+    }
+  }
+
+  > :last-child .ui-button {
+    margin-right: 0;
+  }
+
+}
+
+// only when we have a revert button next to the input/dropdown
+.input-revert-btn {
+  @include flexbox();
+  @include justify-content(space-between);
+
+  .form-wrapper {
+    @include flex(1);
+  }
+
+  .revert-btn {
+    @include flexbox();
+    @include align-items(flex-end);
+    margin-bottom: $space-s;
+    margin-left: $space-xs;
+
+    .btn-link {
+      margin: 0;
+      padding: 0 $space-m;
+      .fa {
+        font-size: $icon-size-medium;
+      }
+    }
+  }
+}
+
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+  /* IE10-specific styles go here */
+
+  .button-wrapper > admin-button {
+    display: inline-block;
+  }
+
+}
+
+
+.form-group {
+  @include flexbox();
+  margin-bottom: $space-s;
+  min-height: 35px; // for IE10+
+
+  .form-item-spread {
+    min-height: 35px; // for IE10+
+    @include flexbox();
+    @include flex-direction(column);
+    //@include flex(1);
+
+    &:not(:last-child){
+      margin-right: $space-s;
+    }
+  }
+
+  .form-item-spread {
+    @include flexbox();
+    @include flex-direction(column);
+    @include flex(1);
+
+    admin-info-message {
+      @include flex(1);
+      @include flexbox();
+      @include flex-direction(column);
+    }
+
+    .info-msg {
+      @include flex(1);
+
+      span {
+        @include flexbox();
+      }
+    }
+  }
+
+  .form-button-position {
+    @include flexbox();
+    @include flex-direction(column);
+
+    admin-button  {
+      @include flex(1);
+      @include flexbox();
+      @include flex-direction(column);
+    }
+
+    .ui-button {
+      @include flex(1);
+    }
+  }
+
+  .form-button-position {
+    margin-top: 2px;
+  }
+
+  .ui-button {
+    margin: -1px 0 0;
+  }
+}
+//general wrapper styles input/counter
+.form-wrapper {
+  @include flexbox();
+  @include flex-wrap(wrap);
+  @include align-items(center);
+  margin-bottom: $space-s;
+  position: relative;
+
+  label {
+    width: 100%;
+  }
+}
+.form-wrapper-inline {
+  label{
+    width: $label-width; //doublecheck
+    margin-right: $space-m;
+  }
+}
+
+.label-offset {
+  margin-left: $label-width;
+}
+
+.align-right-offset {
+  width: 50%;
+  margin-right: $space-m;
+  float: right;
+  clear: both;
+}
+
+
+
+
+//----------- message blocks --------------
+
+.info-msg {
+  @include flexbox();
+  @include align-content(center);
+
+  border: 1px solid $color-separator;
+  border-radius: $border-radius;
+  margin-bottom: $space-s;
+  padding: $space-xs $space-m;
+
+  .fa {
+    font-size: 20px;
+    margin-right: $space-m;
+    padding-top: $space-xs;
+    @include flexbox();
+    @include align-items(flex-start);
+  }
+
+  a {
+    color: $color-text;
+    text-decoration: underline;
+    margin-left: auto;
+
+  }
+
+  &.info-msg-alert {
+    background-color: $color-alert-bkg;
+    border: 1px solid $color-alert-border;
+
+    .fa {
+      color: $color-alert-icon;
+    }
+  }
+}
+
+// this removes the margin to align better with other inline elements
+.form-item-spread {
+  .info-msg {
+    margin-bottom: 0;
+  }
+}
+
+
+//----------- layout --------------
+
+main {
+  @include flexbox();
+  width: 100%;
+
+  & > aside, & > section {
+    padding: $space-l;
+  }
+
+  aside {
+    background-color: $color-bkg-light;
+    border-right: 1px solid $color-separator;
+    padding-right: 0;
+
+    li {
+      list-style-type: none;
+
+      &.active {
+        background-color: $color-selection;
+        border-radius: $border-radius;
+      }
+    }
+  }
+
+  section, section.full-width section {
+    @include flex(1);
+    max-width: 768px;
+    margin: 0 auto;
+  }
+
+  //ie fix
+  @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+    section {
+      @include flex(auto);
+      width: 100%;
+    }
+  }
+
+  aside ~ section {
+    margin: 0;
+  }
+
+  section.full-width{
+    max-width: 100%;
+  }
+
+  @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+    /* IE10-specific styles go here */
+    section.full-width{
+      max-width: 95%;
+    }
+  }
+}
+
+.cols-equal{
+  @include flexbox();
+
+  > * {
+    @include flex(1);
+
+    &:not(:last-child) {
+      margin-right: $space-m;
+    }
+  }
+}
+//IE10+ fixes
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+  .cols-equal label {
+    display: inline-block;
+  }
+}
+.col-shrink {
+  @include flex(0);
+  min-width: 12px;
+}
+
+
+//----------- validations / valdr --------------
+
+.fa-val {
+  display: none;
+
+  &:after {
+    display: block;
+    line-height: 0;
+    position: absolute;
+    right: $space-s;
+  }
+}
+
+// required and error (not delete value)
+:not(form).ng-invalid.ng-dirty {
+  input[type='text'], .ui-dropdown, .ui-multiselect {
+    border: 1px solid $color-alert;
+
+    &:focus, &:active {
+      @include box-shadow-input($color-alert);
+      outline: none;
+    }
+  }
+  .fa-val {
+    display: inline-block;
+
+    &:after {
+      color: $color-alert;
+      content: "\f00d"; //x
+    }
+  }
+  .ui-dropdown .ui-dropdown-trigger,
+  .ui-multiselect .ui-multiselect-trigger {
+    right: $space-l;
+  }
+  .counter-wrapper {
+    margin-right: $space-l; //space for checkmark
+  }
+  .counter-wrapper .fa-val  {
+    margin-right: -$space-l; //bring checkmark before arrows
+  }
+  .ui-dropdown,
+  .ui-multiselect {
+    &.ui-state-focus {
+      @include box-shadow-input($color-alert);
+      outline: none;
+    }
+  }
+
+  ~ admin-valdr-message .valdr-message p {
+    color: $color-alert;
+    font-size: $font-size-valdr;
+    text-align: right;
+    margin-top: -$space-s;
+  }
+}
+
+// required and empty
+:not(form).ng-invalid.ng-pristine{
+  input[type='text'], .ui-dropdown, .ui-multiselect {
+    border: 1px solid $color-warning;
+
+    &:focus, &:active {
+      @include box-shadow-input($color-warning);
+      outline: none;
+    }
+  }
+  .fa-val {
+    display: inline-block;
+
+    &:after {
+      color: $color-warning;
+      content: "\f128"; //questionmark
+    }
+  }
+  .ui-dropdown .ui-dropdown-trigger,
+  .ui-multiselect .ui-multiselect-trigger {
+    right: $space-l;
+  }
+  .counter-wrapper {
+    margin-right: $space-l; //space for checkmark
+  }
+  .counter-wrapper .fa-val  {
+    margin-right: -$space-l; //bring checkmark before arrows
+  }
+  .ui-dropdown,
+  .ui-multiselect {
+    &.ui-state-focus {
+      @include box-shadow-input($color-warning);
+      outline: none;
+    }
+  }
+
+  ~ admin-valdr-message .valdr-message p {
+    color: $color-warning;
+    font-size: $font-size-valdr;
+    text-align: right;
+    margin-top: -$space-s;
+  }
+}
+
+//required and filled in after being empty
+:not(form):not(.ng-pristine).ng-valid.ng-dirty {
+  .fa-val {
+    display: inline-block;
+
+    &:after {
+      color: $color-success;
+      content: '\f00c'; //check
+    }
+  }
+  .ui-dropdown .ui-dropdown-trigger,
+  .ui-multiselect .ui-multiselect-trigger {
+    right: $space-l;
+  }
+  .counter-wrapper {
+    margin-right: $space-l; //space for checkmark
+  }
+  .counter-wrapper .fa-val  {
+    margin-right: -$space-l; //bring checkmark before arrows
+  }
+}
+
+// required for all modals to appear styled
+.ui-dialog {
+  @include box-shadow-card();
+  background-color: white;
+  border: 0;
+ // min-width: 36rem !important; //override component
+
+  .ui-dialog-titlebar {
+    background-color: white;
+    padding: $space-l;
+  }
+  .ui-dialog-titlebar-icon:hover {
+    background-color: $color-selection;
+    border-color: $color-selection;
+    color: $color-text;
+  }
+
+  .ui-dialog-title {
+    font: $primary-font-h3;
+    margin-right: $space-xl;
+  }
+
+  .ui-dialog-content {
+    text-align: left;
+    padding: $space-s $space-l;
+
+    .button-wrapper {
+      margin-top: $space-xxl;
+    }
+  }
+
+  .ui-dialog-footer {
+    border: 0;
+    margin-top: $space-xxl;
+  }
+}
+.ui-confirmdialog.ui-dialog .ui-dialog-content {
+  padding-left: $space-l;
+}
+
+.ui-widget-header {
+  background: $color-bkg-light;
+  font-weight: normal;
+  font-size: 16px;
+}
+.ui-table .ui-table-thead {
+  tr {
+    th {
+      background-color: $color-text-invert;
+    }
+  }
+}
+.ui-table .ui-sortable-column.ui-state-highlight {
+  background-color: transparent;
+  color: $color-text;
+
+  &:hover, &:active {
+    background-color: $color-search-bkg;
+    color: $color-text;
+  }
+}
+.ui-table .ui-sortable-column.ui-state-highlight .ui-sortable-column-icon {
+  color: $color-text;
+  font-size: 10px;
+}
+.ui-table .ui-sortable-column:not(.ui-state-highlight):hover, .ui-widget a:hover,
+.ui-table .ui-sortable-column:not(.ui-state-highlight):hover{
+  background-color: $color-search-bkg !important;
+  color: $color-text !important;
+}
+
+.ui-table .ui-table-thead tr th {
+  font-size: 11px;
+}

@@ -1,0 +1,129 @@
+/* functions */
+@function setFont($font-weight, $font-size, $line-height, $font-family) {
+  @return #{$font-weight} #{$font-size}/#{$line-height} $font-family;
+}
+
+/* mixins */
+@mixin box-shadow-card() {
+  -webkit-box-shadow: 0 2px 2px 2px rgba(0,0,0,.1);
+  -moz-box-shadow: 0 2px 2px 2px rgba(0,0,0,.1);
+  box-shadow: 0 2px 2px 2px rgba(0,0,0,.1);
+}
+@mixin box-shadow-input($box-shadow-color) {
+  -webkit-box-shadow: 0 0 2px 1px $box-shadow-color;
+  -moz-box-shadow: 0 0 2px 1px $box-shadow-color;
+  box-shadow: 0 0 2px 1px $box-shadow-color;
+}
+
+//Flexbox browser support
+//Set flexbox container
+@mixin flexbox() {
+  //display: -webkit-box;
+  //display: -moz-box;
+  display: -ms-flexbox;
+  //display: -webkit-flex;
+  display: flex;
+}
+@mixin flex($values) {
+  //-webkit-box-flex: $values;
+  //-moz-box-flex: $values;
+  //-webkit-flex: $values;
+  -ms-flex: $values;
+  flex: $values;
+}
+
+// Flex Direction
+@mixin flex-direction($direction) {
+  -webkit-flex-direction: $direction;
+  -moz-flex-direction: $direction;
+  -ms-flex-direction: $direction;
+  flex-direction: $direction;
+}
+
+// Flex Line Wrapping
+@mixin flex-wrap($wrap) {
+  -webkit-flex-wrap: $wrap;
+  -moz-flex-wrap: $wrap;
+  -ms-flex-wrap: $wrap;
+  flex-wrap: $wrap;
+}
+
+//flexbox row - horizontal alignment
+@mixin justify-content($justify) {
+  //-webkit-justify-content: $justify;
+  //-moz-justify-content: $justify;
+  -ms-justify-content: $justify;
+  justify-content: $justify;
+  -ms-flex-pack: $justify;
+}
+//flexbox row - vertical alignment
+@mixin align-content($align) {
+  //-webkit-align-content: $align;
+  //-moz-align-content: $align;
+  -ms-align-content: $align;
+  align-content: $align;
+}
+//flexbox row - vertical alignment per item
+@mixin align-items($align) {
+  -webkit-align-items: $align;
+  -moz-align-items: $align;
+  -ms-align-items: $align;
+  align-items: $align;
+}
+
+// mixin for breadcrumb arrow on the left of li item
+@mixin breadcrumb-arrow-left($color) {
+  position: absolute;
+  top:0;
+  left:0;
+  display: block;
+  border-left: 25px solid $color; // width: arrow width, color: background of document
+  border-top: 40px solid transparent; // width: half height
+  border-bottom: 40px solid transparent; // width: half height
+  height: 0;
+  content: " ";
+}
+
+// mixin for breadcrumb arrow on the right of li item
+@mixin breadcrumb-arrow-right($color) {
+  z-index: 1; // need to bring this above the next item
+  position: absolute;
+  top: 0;
+  right: -25px; // arrow width (negated)
+  display: block;
+  border-left: 25px solid $color; // width: arrow width
+  border-top: 40px solid transparent; // width: half height
+  border-bottom: 40px solid transparent; // width: half height
+  width: 1px;
+  height:0;
+  content: " ";
+}
+
+// mixin for breadcrumb arrow on the left of li item - mini version
+@mixin breadcrumb-arrow-left-mini($color) {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  border-left: 20px solid $color; // width: arrow width, color: background of document
+  border-top: 25px solid transparent; // width: half height
+  border-bottom: 25px solid transparent; // width: half height
+  height: 0;
+  content: " ";
+}
+
+// mixin for breadcrumb arrow on the right of li item - mini version
+@mixin breadcrumb-arrow-right-mini($color) {
+  z-index: 1; // need to bring this above the next item
+  position: absolute;
+  top: 0;
+  right: -23px;
+  display: block;
+  border-left: 20px solid $color;// width: arrow width
+  border-top: 25px solid transparent;// width: half height
+  border-bottom: 25px solid transparent;// width: half height
+  width: 3.5px;
+  height: 0;
+  content: " ";
+}
+

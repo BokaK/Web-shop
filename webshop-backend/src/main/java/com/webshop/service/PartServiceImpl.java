@@ -19,7 +19,18 @@ public class PartServiceImpl implements PartService {
     }
 
     @Override
-    public void insertPart(Part part) {
+    public void savePart(Part part) {
         partRepository.save(part);
     }
+
+    @Override
+    public void updatePart(Part part) {
+        partRepository.save(part);
+    }
+
+    @Override
+    public void deletePart(String id) {
+        partRepository.deleteById(Long.valueOf(id));
+    }
+
 }
