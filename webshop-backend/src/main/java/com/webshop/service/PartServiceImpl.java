@@ -19,18 +19,24 @@ public class PartServiceImpl implements PartService {
     }
 
     @Override
-    public void savePart(Part part) {
-        partRepository.save(part);
+    public Part savePart(Part part) {
+        return partRepository.save(part);
     }
 
     @Override
-    public void updatePart(Part part) {
-        partRepository.save(part);
+    public Part updatePart(Part part) {
+        return partRepository.save(part);
     }
 
+    // TODO remove the image when delete the part
     @Override
     public void deletePart(String id) {
         partRepository.deleteById(Long.valueOf(id));
+    }
+
+    @Override
+    public Part findById(Long id) {
+        return partRepository.findById(id).get();
     }
 
 }

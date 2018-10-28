@@ -12,7 +12,6 @@ import javax.persistence.*;
 @Entity
 @Setter
 @Getter
-
 public class Part extends BaseEntity {
 
     private String name;

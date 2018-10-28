@@ -1,0 +1,93 @@
+@import '../../../helpers/typography';
+@import '../../../helpers/variables';
+
+.container {
+  padding-top: 20px;
+}
+
+@media (max-width: 1201px) {
+  ul.banner-social-buttons {
+    margin-top: 15px;
+  }
+  #contact-div {
+    padding-top: 0px !important;
+  }
+
+}
+
+.contact-section {
+  height: 100%;
+  padding-top: 50px;
+}
+
+#contact, #help, #tires {
+  width: 100%;
+}
+.icon-div
+{
+  font-size: 70px;
+  background: transparent;
+  width: 320px;
+  text-align: left;
+  color: gray;
+  border: 2px solid #f77a4287;
+}
+.icon-div span
+{
+  padding-bottom: 20px;
+  padding-top: 20px;
+  padding-left: 25px;
+}
+.hover-div:hover .icon-div{
+  transition:all ease-in-out .5s;
+  opacity:.6;
+  transform: scale(1.2);
+}
+.hover-div{
+  margin:0 auto;
+  max-width:350px;
+  margin-top:30px;
+  position:relative;
+  overflow:hidden;
+}
+.hover-div:hover .view-details{
+  transition:all ease-in-out .5s;
+  opacity:1;
+  color:#000;
+}
+.hover-div:hover .icon-div{
+  transition:all ease-in-out .5s;
+  opacity:.6;
+  transform: scale(1.2);
+}
+.view-details{
+  transition:all ease-in-out .5s;
+  top:5%;
+  left:32%;
+  position:absolute;
+
+}
+.view-details p{
+  transition:all ease-in-out .2s;
+  padding-left: 15px;
+  color:darkgray;
+}
+.view-details:hover p{
+  transition:all ease-in-out .2s;
+  padding:12px 24px;
+  color:darkgray;
+}
+
+.hover-div:hover .view-details{
+  transition:all ease-in-out .5s;
+  opacity:1;
+  color:#000;
+}
+
+@media (min-width: 1201px) {
+
+  .view-details p
+  {
+    font-size:1.2vw !important;
+  }
+}

@@ -1,1 +1,48 @@
-orders
+<div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid">
+  <div class="ui-grid-row">
+    <div class="ui-grid-col-12">
+      <p-table #dt [columns]="cols" [value]="checkouts" [paginator]="true" [rows]="10" [style]="{'margin-top': '20px'}">
+        <ng-template pTemplate="caption">
+          Нарачки
+        </ng-template>
+        <ng-template pTemplate="header" let-columns>
+          <tr>
+            <th *ngFor="let col of columns" class="text-center">
+              {{col.header}}
+            </th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rowData>
+          <tr class="text-center">
+            <td>
+              <p><b>Име:</b> {{rowData.user.contactInfo.firstName}}</p>
+              <p><b>Презиме:</b> {{rowData.user.contactInfo.lastName}}</p>
+              <p><b>Телефон:</b> {{rowData.user.contactInfo.phone}}</p>
+            </td>
+            <td>
+              <p><b>Компанија:</b> {{rowData.user.contactInfo.company}}</p>
+              <p><b>Град:</b> {{rowData.user.contactInfo.city}}</p>
+            </td>
+            <td>
+              <div *ngFor="let cartItem of cartItems" >
+                <span>{{cartItem.part.name}}</span> &nbsp; - &nbsp;
+                <span>{{cartItem.quantity}}</span>
+                <hr style="background: darkgray;height: 1px; margin-top: 10px;margin-bottom: 10px">
+              </div>
+            </td>
+            <td>
+              {{rowData.cart.totalPrice}} ден.
+            </td>
+            <td>
+              {{translatedCheckoutStatuses[rowData.checkoutStatus]}}
+            </td>
+            <td>
+              <p-dropdown [options]="checkoutStatusList" placeholder="Потврди/Откажи"
+                          (onChange)="changeCheckoutStatus(rowData, $event.value)"></p-dropdown>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+</div>

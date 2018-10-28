@@ -7,9 +7,12 @@ import java.util.List;
 public interface PartService {
 
     List<Part> getAllParts();
-    void savePart(Part part);
 
-    void updatePart(Part part);
+    Part savePart(Part part);
+
+    Part updatePart(Part part);
 
     void deletePart(String id);
+
+    Part findById(Long id);
 }

@@ -21,9 +21,10 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
-              "src/app/assets",
-              "src/app/helpers",
-              "src/favicon.png"
+              "src/app/assets/",
+              "src/app/helpers/",
+              "src/favicon.png",
+              "src/app/assets/images/b1.jpg"
             ],
             "styles": [
               "node_modules/font-awesome/css/font-awesome.min.css",

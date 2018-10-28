@@ -4,7 +4,6 @@ import com.webshop.model.Part;
 import com.webshop.service.PartService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -18,14 +17,14 @@ public class AdminPartController {
 
     @PostMapping(value = "/save")
     @ResponseStatus(HttpStatus.CREATED)
-    public void savePart(@Valid @RequestBody Part part) {
-        partService.savePart(part);
+    public Part savePart(@Valid @RequestBody Part part) {
+        return partService.savePart(part);
     }
 
     @PostMapping(value = "/update")
     @ResponseStatus(HttpStatus.CREATED)
-    public void updatePart(@RequestBody Part part) {
-        partService.updatePart(part);
+    public Part updatePart(@RequestBody Part part) {
+        return partService.updatePart(part);
     }
 
     @GetMapping(value = "/delete/{id}")

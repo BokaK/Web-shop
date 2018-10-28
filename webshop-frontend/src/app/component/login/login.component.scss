@@ -1,0 +1,19 @@
+.ui-grid-row {
+  margin: 10px 0;
+}
+.btnCustom {
+  padding: 5px 20px;
+  color: white;
+  text-transform: uppercase;
+  background-color: #e3411bb3;
+  margin-right: 10px;
+}
+.welcomePanel {
+  border: 1px solid #535965;
+  color: white;
+  background-color: #dddddd4d;
+  margin-top: 75px;
+  .ui-grid-row {
+    margin: 10px 0;
+  }
+}

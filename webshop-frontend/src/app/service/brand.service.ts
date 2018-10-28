@@ -24,7 +24,7 @@ export class BrandService extends DefaultService {
     return this.http.post<any>(this.adminUrl + '/brand/update', brand).pipe(catchError(this.handleError));
   }
 
-  deleteBrand(id: string) {
-    return this.http.get<any>(this.adminUrl + '/brand/delete/' + id).pipe(catchError(this.handleError));
+  deleteBrand(brand: Brand) {
+    return this.http.post<any>(this.adminUrl + '/brand/delete', brand).pipe(catchError(this.handleError));
   }
 }

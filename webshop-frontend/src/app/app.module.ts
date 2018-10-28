@@ -20,6 +20,14 @@ import {AdminUsersComponent} from './component/admin/users/users.component';
 import {PartService} from './service/part.service';
 import {AdminBrandsComponent} from './component/admin/brands/brands.component';
 import {BrandService} from './service/brand.service';
+import {PartImageService} from './service/part-image.service';
+import {CheckoutService} from './service/chechkout.service';
+import {CartItemService} from './service/cart-item.service';
+import {UserPartsComponent} from './component/user/parts/parts.component';
+import {UserOrdersComponent} from './component/user/orders/orders.component';
+import {UserHomeComponent} from './component/user/home/home.component';
+import {ShoppingCartComponent} from './component/user/shoppingCart/shopping-cart.component';
+import {AccountInfoComponent} from './component/user/accountInfo/account-info.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +38,12 @@ import {BrandService} from './service/brand.service';
     AdminPartsComponent,
     AdminOrdersComponent,
     AdminUsersComponent,
-    AdminBrandsComponent
+    AdminBrandsComponent,
+    UserPartsComponent,
+    UserOrdersComponent,
+    UserHomeComponent,
+    ShoppingCartComponent,
+    AccountInfoComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +55,8 @@ import {BrandService} from './service/brand.service';
     HttpClientModule,
     RouterModule.forRoot(ROUTES)
   ],
-  providers: [DefaultService, UserService, AuthenticationService, PartService, BrandService],
+  providers: [DefaultService, UserService, AuthenticationService,
+    PartService, BrandService, PartImageService, CheckoutService, CartItemService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

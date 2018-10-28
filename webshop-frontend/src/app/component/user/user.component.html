@@ -1,5 +1,29 @@
-<p-megaMenu [model]="items"></p-megaMenu>
-<p *ngIf="user">
-  {{user.name}} - {{user.authorities[0].authority}}
-</p>
-<router-outlet></router-outlet>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container">
+
+    <!--<a class="navbar-brand" href="#"><i class="fa fa-home"></i></a>-->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li *ngFor="let item of items" class="nav-item" [class]="getActiveItem(item)">
+          <a class="nav-link" [routerLink]="item.routerLink">{{item.label}}</a>
+        </li>
+      </ul>
+      <ul class="form-inline my-2 my-lg-0">
+        <li class="nav-item" [routerLink]="'/user/cart'">
+          <i class="fa fa-shopping-cart shopping-cart" aria-hidden="true"></i>
+          <div class="badge">2</div>
+        </li>
+        <p-dropdown [options]="dropDownItems" [placeholder]="user.username"
+                    (onChange)="dropDownItemOnClick($event)"></p-dropdown>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div class="container userContainer">
+  <router-outlet></router-outlet>
+</div>

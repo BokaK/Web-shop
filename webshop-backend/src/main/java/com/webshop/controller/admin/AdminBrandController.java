@@ -33,8 +33,9 @@ public class AdminBrandController {
         brandService.updateBrand(brand);
     }
 
-    @GetMapping(value = "/delete/{id}")
-    public void saveBrand(@PathVariable String id) {
-        brandService.deleteBrand(id);
+    @PostMapping(value = "/delete")
+    @ResponseStatus(HttpStatus.CREATED)
+    public void deleteBrand(@RequestBody Brand brand) {
+        brandService.deleteBrand(brand);
     }
 }

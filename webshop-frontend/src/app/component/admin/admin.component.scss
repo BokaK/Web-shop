@@ -1,0 +1,8 @@
+@import '../../helpers/typography';
+@import '../../helpers/variables';
+
+
+.navbar .ui-dropdown label.ui-dropdown-label {
+  font-weight: bold;
+  color: $color-active;
+}

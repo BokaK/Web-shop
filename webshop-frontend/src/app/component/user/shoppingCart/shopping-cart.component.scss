@@ -1,0 +1,112 @@
+@import '../../../helpers/typography';
+@import '../../../helpers/variables';
+//todo background
+//.background {
+//  background: url("../../../../assets/images/bkg.jpg") no-repeat bottom right;
+//  height: 84vh;
+//  background-size: 500px;
+//}
+.stepRow {
+  text-align: center;
+  margin-top: 30px;
+
+  .circle {
+    padding: 5px 10px;
+    border:1px solid $color-active;
+    color: $color-active;
+    background-color: $color-bkg-light;
+    font-weight: bold;
+    border-radius: 10px;
+    font-size: 20px;
+  }
+
+  .circleActive {
+    background: $color-active;
+    color: white;
+  }
+
+  .stepHr {
+    position: relative;
+    top: 22px;
+    z-index: -10;
+  }
+
+  p {
+    font-size: 11px;
+  }
+}
+.stepContent {
+  border: 1px solid $color-separator;
+  box-shadow: 0 1px 3px 0 rgba(0,0,0,0.2), 0 1px 1px 0 rgba(0,0,0,0.14), 0 2px 1px -1px rgba(0,0,0,0.12);
+  -webkit-box-shadow: 0 1px 3px 0 rgba(0,0,0,0.2), 0 1px 1px 0 rgba(0,0,0,0.14), 0 2px 1px -1px rgba(0,0,0,0.12);
+  margin-top: 20px;
+
+  .rowHeader
+  {
+    margin-top: 10px;
+    div {
+      font-weight: bold;
+      color: $color-active;
+      font-size: 15px;
+    }
+  }
+
+  hr {
+    width: 94%;
+    margin-left: 3%;
+  }
+
+  button {
+    padding: 0 5px;
+  }
+
+  .totalPrice {
+    font-size: 16px;
+    color: $color-active;
+    font-weight: bold;
+  }
+
+  textarea {
+    width: 90%;
+    height: 150px;
+  }
+
+  .contactInfoTitles {
+    p {
+      text-align: right;
+      font-weight: bold;
+      color: $color-primary;
+    }
+  }
+
+  h6 {
+    color: $color-primary;
+    font-weight: bold;
+  }
+
+}
+
+
+h5 {
+  color:$color-active;
+}
+
+.resultDiv {
+  padding: 20px 0;
+
+  p:first-child {
+    font-size: 18px;
+  }
+
+  span {
+    color: $color-success;
+    font-size: 16px;
+    font-weight: bold;
+  }
+
+  p {
+    font-size: 16px;
+    color: $color-primary;
+    font-weight: bold;
+  }
+}

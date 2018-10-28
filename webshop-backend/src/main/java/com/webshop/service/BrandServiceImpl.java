@@ -2,16 +2,20 @@ package com.webshop.service;
 
 import com.webshop.model.Brand;
 import com.webshop.persistence.BrandRepository;
+import com.webshop.persistence.PartRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
 @AllArgsConstructor
+@Transactional
 public class BrandServiceImpl implements BrandService {
 
     private final BrandRepository brandRepository;
+    private final PartRepository partRepository;
 
     @Override
     public List<Brand> getAllBrands() {
@@ -29,7 +33,8 @@ public class BrandServiceImpl implements BrandService {
     }
 
     @Override
-    public void deleteBrand(String id) {
-        brandRepository.deleteById(Long.valueOf(id));
+    public void deleteBrand(Brand brand) {
+        partRepository.deleteByBrand(brand);
+        brandRepository.delete(brand);
     }
 }

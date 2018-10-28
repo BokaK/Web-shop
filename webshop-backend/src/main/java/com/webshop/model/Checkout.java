@@ -16,7 +16,7 @@ import java.sql.Date;
 @Getter
 public class Checkout extends BaseEntity {
 
-    @Enumerated(EnumType.ORDINAL)
+    @Enumerated(EnumType.STRING)
     private CheckoutStatus checkoutStatus;
 
     @ManyToOne

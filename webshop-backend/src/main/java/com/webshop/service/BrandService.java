@@ -12,5 +12,5 @@ public interface BrandService {
 
     void updateBrand(Brand brand);
 
-    void deleteBrand(String id);
+    void deleteBrand(Brand id);
 }

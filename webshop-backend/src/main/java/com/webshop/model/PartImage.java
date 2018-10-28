@@ -3,10 +3,7 @@ package com.webshop.model;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * Created by user on 13.9.2018.
@@ -17,7 +14,8 @@ import javax.persistence.Table;
 @Getter
 public class PartImage extends BaseEntity {
 
-    @OneToOne(fetch = FetchType.EAGER)
+    @OneToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+    @JoinColumn(name = "tire_id")
     private Part part;
 
     private String imageUrl;

@@ -1,0 +1,177 @@
+<div id="userPartsContainer">
+<div class="ui-grid-row">
+  <div class="ui-grid-col-4">
+    <h3>Филтрирање на приказ:</h3>
+    <hr>
+    <div class="ui-grid-row">
+      <div class="ui-grid-col-4">
+        Артикал:
+      </div>
+      <div class="ui-grid-col-6">
+        <input pInputText type="text" placeholder="Артикал"/>
+      </div>
+    </div>
+    <div class="ui-grid-row">
+      <div class="ui-grid-col-4">
+        Бренд:
+      </div>
+      <div class="ui-grid-col-6">
+        <select class="form-control">
+          <option>Бренд на производ:</option>
+        </select>
+      </div>
+    </div>
+    <div class="ui-grid-row">
+      <div class="ui-grid-col-4">
+        Цена:
+      </div>
+      <div class="ui-grid-col-6">
+        <p-slider [(ngModel)]="rangeValues" [style]="{'margin-top':'7px'}" [range]="true"></p-slider>
+      </div>
+    </div>
+    <div class="ui-grid-row">
+      <div class="ui-grid-col-10">
+        <button type="button" class="btn btn-secondary btn-block">Филтрирај приказ</button>
+      </div>
+    </div>
+  </div>
+  <div id="parts" class="ui-grid-col-8">
+    <div class="ui-grid-row">
+      <div class="ui-grid-col-5 ui-lg-offset-1">
+        <p-card header="Advanced Card" subheader="Subheader" styleClass="ui-card-shadow">
+          <p-header>
+            <h3>Fiat</h3>
+            <img alt="Card" src="../../../assets/images/del1.jpg" class="rounded">
+          </p-header>
+          <div class="ui-card-title">ХИДРАУЛИЧНА ПУМПА ФОРД 3600</div>
+          <div class="ui-card-subtitle">U-80001</div>
+          <div class="price">200.00 ден.</div>
+          <p-footer>
+            <button class="btn btn-secondary">Стави во кошничка</button>
+
+          </p-footer>
+        </p-card>
+      </div>
+      <div class="ui-grid-col-5 ui-lg-offset-1">
+        <p-card header="Advanced Card" subheader="Subheader" styleClass="ui-card-shadow">
+          <p-header>
+            <h3>Ford</h3>
+            <img alt="Card" src="../../../assets/images/del2.jpg" class="rounded">
+          </p-header>
+          <div class="ui-card-title">СЛАВИНА ГОРИВО ФОРД </div>
+          <div class="ui-card-subtitle">2000, 2600, 2610, 3000, 3600, 3610, 4000 (U-81781)</div>
+          <div class="onSale">
+            <span class="priceBeforeSale">250.00 ден.</span>
+            <span class="price">200.00 ден.</span>
+          </div>
+          <p-footer>
+            <button class="btn btn-secondary">Стави во кошничка</button>
+          </p-footer>
+        </p-card>
+      </div>
+    </div>
+    <div class="ui-grid-row">
+      <div class="ui-grid-col-5 ui-lg-offset-1">
+        <p-card header="Advanced Card" subheader="Subheader" styleClass="ui-card-shadow">
+          <p-header>
+            <h3>Fiat</h3>
+            <img alt="Card" src="../../../assets/images/del1.jpg" class="rounded">
+          </p-header>
+          <div class="ui-card-title">ХИДРАУЛИЧНА ПУМПА ФОРД 3600</div>
+          <div class="ui-card-subtitle">U-80001</div>
+          <div class="price">200.00 ден.</div>
+          <p-footer>
+            <button class="btn btn-secondary">Стави во кошничка</button>
+
+          </p-footer>
+        </p-card>
+      </div>
+      <div class="ui-grid-col-5 ui-lg-offset-1">
+        <p-card header="Advanced Card" subheader="Subheader" styleClass="ui-card-shadow">
+          <p-header>
+            <h3>Ford</h3>
+            <img alt="Card" src="../../../assets/images/del2.jpg" class="rounded">
+          </p-header>
+          <div class="ui-card-title">СЛАВИНА ГОРИВО ФОРД </div>
+          <div class="ui-card-subtitle">2000, 2600, 2610, 3000, 3600, 3610, 4000 (U-81781)</div>
+          <div class="onSale">
+            <span class="priceBeforeSale">250.00 ден.</span>
+            <span class="price">200.00 ден.</span>
+          </div>
+          <p-footer>
+            <button class="btn btn-secondary">Стави во кошничка</button>
+          </p-footer>
+        </p-card>
+      </div>
+    </div>
+    <div class="ui-grid-row">
+      <div class="ui-grid-col-5 ui-lg-offset-1">
+        <p-card header="Advanced Card" subheader="Subheader" styleClass="ui-card-shadow">
+          <p-header>
+            <h3>Fiat</h3>
+            <img alt="Card" src="../../../assets/images/del1.jpg" class="rounded">
+          </p-header>
+          <div class="ui-card-title">ХИДРАУЛИЧНА ПУМПА ФОРД 3600</div>
+          <div class="ui-card-subtitle">U-80001</div>
+          <div class="price">200.00 ден.</div>
+          <p-footer>
+            <button class="btn btn-secondary">Стави во кошничка</button>
+
+          </p-footer>
+        </p-card>
+      </div>
+      <div class="ui-grid-col-5 ui-lg-offset-1">
+        <p-card header="Advanced Card" subheader="Subheader" styleClass="ui-card-shadow">
+          <p-header>
+            <h3>Ford</h3>
+            <img alt="Card" src="../../../assets/images/del2.jpg" class="rounded">
+          </p-header>
+          <div class="ui-card-title">СЛАВИНА ГОРИВО ФОРД </div>
+          <div class="ui-card-subtitle">2000, 2600, 2610, 3000, 3600, 3610, 4000 (U-81781)</div>
+          <div class="onSale">
+            <span class="priceBeforeSale">250.00 ден.</span>
+            <span class="price">200.00 ден.</span>
+          </div>
+          <p-footer>
+            <button class="btn btn-secondary">Стави во кошничка</button>
+          </p-footer>
+        </p-card>
+      </div>
+    </div>
+    <div class="ui-grid-row">
+      <div class="ui-grid-col-5 ui-lg-offset-1">
+        <p-card header="Advanced Card" subheader="Subheader" styleClass="ui-card-shadow">
+          <p-header>
+            <h3>Fiat</h3>
+            <img alt="Card" src="../../../assets/images/del1.jpg" class="rounded">
+          </p-header>
+          <div class="ui-card-title">ХИДРАУЛИЧНА ПУМПА ФОРД 3600</div>
+          <div class="ui-card-subtitle">U-80001</div>
+          <div class="price">200.00 ден.</div>
+          <p-footer>
+            <button class="btn btn-secondary">Стави во кошничка</button>
+
+          </p-footer>
+        </p-card>
+      </div>
+      <div class="ui-grid-col-5 ui-lg-offset-1">
+        <p-card header="Advanced Card" subheader="Subheader" styleClass="ui-card-shadow">
+          <p-header>
+            <h3>Ford</h3>
+            <img alt="Card" src="../../../assets/images/del2.jpg" class="rounded">
+          </p-header>
+          <div class="ui-card-title">СЛАВИНА ГОРИВО ФОРД </div>
+          <div class="ui-card-subtitle">2000, 2600, 2610, 3000, 3600, 3610, 4000 (U-81781)</div>
+          <div class="onSale">
+            <span class="priceBeforeSale">250.00 ден.</span>
+            <span class="price">200.00 ден.</span>
+          </div>
+          <p-footer>
+            <button class="btn btn-secondary">Стави во кошничка</button>
+          </p-footer>
+        </p-card>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

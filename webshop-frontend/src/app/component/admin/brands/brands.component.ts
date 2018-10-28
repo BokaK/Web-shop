@@ -1,13 +1,13 @@
 import {Component, OnInit} from '@angular/core';
 import {BrandService} from '../../../service/brand.service';
 import {Brand} from '../../../model/brand';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {errorMessages} from '../../../helpers/error-messages';
 
-// TODO do not insert if form is not valid
 @Component({
   selector: 'app-brands',
   templateUrl: './brands.component.html',
-  styleUrls: ['./brands.component.css']
+  styleUrls: ['./brands.component.scss']
 })
 export class AdminBrandsComponent implements OnInit {
 
@@ -17,7 +17,7 @@ export class AdminBrandsComponent implements OnInit {
   cols: any[];
   ifNewBrand = true;
   displayDialog = false;
-  deleteBrandId: string;
+  deleteBrand: Brand;
 
   constructor(private brandService: BrandService,
               private formBuilder: FormBuilder) {
@@ -43,8 +43,13 @@ export class AdminBrandsComponent implements OnInit {
       this.brands = data;
     });
   }
+
   saveBrand() {
     this.submited = true;
+    if (!this.brandForm.valid) {
+      return;
+    }
+
     if (this.ifNewBrand) {
       this.brandService.saveBrand(this.brandForm.value).subscribe(data => {
         this.reset();
@@ -68,10 +73,11 @@ export class AdminBrandsComponent implements OnInit {
 
   showDialog(value) {
     this.displayDialog = true;
-    this.deleteBrandId = value.id;
+    this.deleteBrand = value;
   }
-  deleteBrand() {
-    this.brandService.deleteBrand(this.deleteBrandId).subscribe(data => {
+
+  delete() {
+    this.brandService.deleteBrand(this.deleteBrand).subscribe(data => {
       this.reset();
     });
   }
@@ -81,5 +87,11 @@ export class AdminBrandsComponent implements OnInit {
     this.brandForm.reset();
     this.ifNewBrand = true;
     this.getAllBrands();
+  }
+
+  getErrorMessage(field: FormControl) {
+    if (field.errors.required) {
+      return errorMessages.required;
+    }
   }
 }

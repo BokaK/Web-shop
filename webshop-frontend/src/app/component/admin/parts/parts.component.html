@@ -1,18 +1,86 @@
-
 <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid">
   <div class="ui-grid-row">
-    <div class="ui-grid-col-5">
-      <p-fieldset [legend]="'Додади/Измени тракторски дел'">
-        <form [formGroup]="partForm">
+    <div class="ui-grid-col-12">
+      <button pButton class="ui-button-success" label="Додади нов дел"
+              style="margin-bottom: 10px" (click)="newPart()"></button>
+      <p-table #dt [columns]="cols" [value]="parts" [paginator]="true" [rows]="10">
+        <ng-template pTemplate="caption">
+          Делови
+        </ng-template>
+        <ng-template pTemplate="header" let-columns>
+          <tr>
+            <th *ngFor="let col of columns" class="text-center" [pSortableColumn]="col.field">
+              {{col.header}}
+              <p-sortIcon [field]="col.field" ariaLabel="Activate to sort"
+                          ariaLabelDesc="Activate to sort in descending order"
+                          ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+            </th>
+            <th class="text-center">Слика</th>
+            <th></th>
+          </tr>
+          <tr>
+            <th *ngFor="let col of columns" class="text-center">
+              <input pInputText type="text" (input)="dt.filter($event.target.value, col.field, 'contains')">
+            </th>
+            <th></th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rowData let-columns="columns">
+          <tr [pSelectableRow]="rowData" class="text-center">
+            <td>
+              {{rowData.name}}
+            </td>
+            <td>
+              {{rowData.description}}
+            </td>
+            <td>
+              {{rowData.price}}
+            </td>
+            <td>
+              {{rowData.onSale ? 'Да' : 'Не'}}
+            </td>
+            <td>
+              {{rowData.onSale ? rowData.priceOnSale : '/'}}
+            </td>
+            <td>
+              {{rowData.onStock ? 'Да' : 'Не'}}
+            </td>
+            <td>
+              {{rowData.onStock ? rowData.stockNumber : '/'}}
+            </td>
+            <td>
+              {{rowData.brand.brandName}}
+            </td>
+            <td>
+              <img [src]="partImagePath + '/' + rowData.id" style="height: 50px;width:50px">
+            </td>
+            <td>
+              <button pButton (click)="changePart(rowData)" label="Измени"
+                      class="ui-button-raised ui-button-rounded ui-button-secondary btnWithRightMargin"></button>
+              <button pButton (click)="showDeleteDialog(rowData)" label="Избриши"
+                      class="ui-button-rounded ui-button-danger"></button>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+</div>
+<p-dialog header="Дел" [(visible)]="displayNewPartDialog" [modal]="true" [responsive]="true" [width]="450"
+          [minWidth]="400" [minY]="70"
+          [baseZIndex]="10000">
+  <form [formGroup]="partForm">
+    <p-fieldset [legend]="'Додади/Измени тракторски дел'">
+      <div class="ui-grid-row">
+        <div class="ui-grid-col-12">
+
           <div class="ui-grid-row">
             <div class="ui-grid-col-5">
               Артикал:
             </div>
             <div class="ui-grid-col-7">
-              <input pInputText type="text" placeholder="Име" formControlName="name"/>
-            </div>
-            <div class="ui-grid-row">
-              <p-message severity="error" text="Ве молиме внесете го името на компанијата"
+              <input pInputText type="text" placeholder="Артикал" formControlName="name"/>
+              <p-message severity="error" [text]="getErrorMessage(partForm.controls['name'])"
                          *ngIf="partForm.controls['name'].errors && submited"></p-message>
             </div>
           </div>
@@ -21,62 +89,97 @@
               Опис:
             </div>
             <div class="ui-grid-col-7">
-              <input pInputText type="text" placeholder="Име" formControlName="description"/>
-            </div>
-            <div class="ui-grid-row">
-              <p-message severity="error" text="Ве молиме внесете го името на компанијата"
+              <input pInputText type="text" placeholder="Опис" formControlName="description"/>
+              <p-message severity="error" [text]="getErrorMessage(partForm.controls['description'])"
                          *ngIf="partForm.controls['description'].errors && submited"></p-message>
             </div>
           </div>
           <div class="ui-grid-row">
+            <div class="ui-grid-col-5">
+              Цена:
+            </div>
+            <div class="ui-grid-col-7">
+              <input pInputText type="number" placeholder="Цена" formControlName="price"/>
+              <p-message severity="error" [text]="getErrorMessage(partForm.controls['price'])"
+                         *ngIf="partForm.controls['price'].errors && submited"></p-message>
+            </div>
+          </div>
+          <div class="ui-grid-row">
+            <div class="ui-grid-col-5">
+              Дали е на попуст?
+            </div>
+            <div class="ui-grid-col-1">
+              <p-checkbox formControlName="onSale" binary="true"
+                          (onChange)="disableControl(partForm.controls['priceOnSale'],$event)"></p-checkbox>
+            </div>
+            <div class="ui-grid-col-6">
+              <input pInputText type="number" placeholder="Цена на попуст" formControlName="priceOnSale"
+                     [required]="partForm.controls['onSale'].value"/>
+              <p-message severity="error" [text]="getErrorMessage(partForm.controls['priceOnSale'])"
+                         *ngIf="partForm.controls['priceOnSale'].errors && submited">
+              </p-message>
+            </div>
+          </div>
+
+          <div class="ui-grid-row">
+            <div class="ui-grid-col-5">
+              Дали има на залиха?
+            </div>
+            <div class="ui-grid-col-1">
+              <p-checkbox formControlName="onStock" binary="true"
+                          (onChange)="disableControl(partForm.controls['stockNumber'],$event)"></p-checkbox>
+            </div>
+            <div class="ui-grid-col-6">
+              <input pInputText type="number" placeholder="Број на залиха" formControlName="stockNumber"
+                     [required]="partForm.controls['onStock'].value"/>
+              <p-message severity="error" [text]="getErrorMessage(partForm.controls['stockNumber'])"
+                         *ngIf="partForm.controls['stockNumber'].errors && submited">
+              </p-message>
+            </div>
+          </div>
+          <div class="ui-grid-row">
+            <div class="ui-grid-col-5">
+              Компанија
+            </div>
+            <div class="ui-grid-col-7">
+              <p-dropdown [options]="brandsDropDownOptions" placeholder="Компанија"
+                          formControlName="brand"></p-dropdown>
+              <p-message severity="error" [text]="getErrorMessage(partForm.controls['brand'])"
+                         *ngIf="partForm.controls['brand'].errors && submited">
+              </p-message>
+            </div>
+          </div>
+          <div class="ui-grid-row">
+            <div class="ui-grid-col-5">
+              Слика
+            </div>
+            <div class="ui-grid-col-7">
+              <input type="file" (change)="handleFileInput($event.target.files)">
+            </div>
+          </div>
+
+          <div class="ui-grid-row">
             <div class="ui-grid-col-12">
               <button pButton type="button" class="float-right ui-button-success"
                       (click)="savePart()" label="Зачувај"></button>
-              <button pButton type="button" icon="fa fa-refresh"
-                      class="float-right ui-button-secondary btnWithRightMargin" (click)="newPart()" label="Нова компанија"></button>
             </div>
           </div>
-        </form>
-      </p-fieldset>
-    </div>
-    <div class="ui-grid-col-7">
-      <p-dataView #dataView [value]="parts" [sortField]="sortField" [sortOrder]="sortOrder" [filterBy]="filterKey">
-        <p-header>
-          <div class="ui-grid-row">
-            <div class="ui-grid-col-3">
-              <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
-            </div>
-            <div class="ui-grid-col-3">
-              <p-dropdown [options]="sortOptions" [(ngModel)]="sortKey" placeholder="Sort By"
-                          (onChange)="onSortChange($event)" [autoWidth]="false" [style]="{'min-width':'15em'}"></p-dropdown>
-            </div>
-            <div class="ui-grid-col-3">
-              <input type="search" pInputText placeholder="Search by part" (keyup)="dataView.filter($event.target.value)">
-            </div>
-            <div class="ui-grid-col-3">
-              <p-dropdown [options]="sortOptions" [(ngModel)]="filterKey" placeholder="Filter By"
-                          [autoWidth]="false" [style]="{'min-width':'15em'}"></p-dropdown>
-            </div>
-          </div>
-        </p-header>
-        <ng-template let-part pTemplate="listItem">
-          <div>
-            {{part.id}} - {{part.description}} - {{part.price}} - {{part.part.partName}}
-          </div>
-        </ng-template>
-        <ng-template let-part pTemplate="gridItem">
-          <div class="ui-g-12 ui-md-3">
-            {{part.part.partName}}
-          </div>
-        </ng-template>
-        <ng-template pTemplate="paginatorleft" let-state>
-          {{state.first}}
-          <button type="button" pButton icon="fa-refresh"></button>
-        </ng-template>
-        <ng-template pTemplate="paginatorright">
-          <button type="button" pButton icon="fa-cloud-upload"></button>
-        </ng-template>
-      </p-dataView>
-    </div>
-  </div>
-</div>
+        </div>
+      </div>
+    </p-fieldset>
+
+  </form>
+
+</p-dialog>
+<p-dialog header="Избриши" [(visible)]="displayDialog" [modal]="true" [responsive]="true" [width]="350" [minWidth]="200"
+          [minY]="70"
+          [maximizable]="true" [baseZIndex]="10000">
+  <span>Дали сте сигурни дека сакате да го избришете избраниот дел?</span>
+  <p-footer>
+    <button type="button" pButton icon="pi pi-check" (click)="displayDialog=false; deletePart()"
+            label="Да" class="ui-button-danger btnWithRightMargin"></button>
+    <button type="button" pButton icon="fa fa-close" (click)="displayDialog=false" label="Не"
+            class="ui-button-secondary"></button>
+  </p-footer>
+</p-dialog>
+

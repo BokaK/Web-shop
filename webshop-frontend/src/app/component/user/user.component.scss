@@ -1,0 +1,129 @@
+@import '../../helpers/typography';
+@import '../../helpers/variables';
+.ui-dropdown {
+  .ui-dropdown-trigger {
+    position: initial;
+  }
+}
+
+.listItemArticles {
+  font-style: oblique;
+}
+.shopping-cart {
+  font-size: 30px;
+  color: $color-active;
+  padding-right: 10px;
+}
+
+.navbar .ui-dropdown label.ui-dropdown-label {
+  color: white;
+}
+
+
+.navbar-custom {
+
+  .navbar .ui-dropdown label.ui-dropdown-label {
+    color: white !important;
+  }
+  margin-bottom: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  background-color: black;
+
+
+  .navbar-toggle {
+    color: white;
+    background-color: rgba(255, 255, 255, 0.2);
+    font-size: 12px;
+
+    &:focus, &:active {
+      outline: none;
+    }
+  }
+  .navbar-brand {
+    font-weight: 700;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  a {
+    color: white;
+    font-size: 18px;
+  }
+
+  .nav {
+    li {
+      a {
+        -webkit-transition: background 0.3s ease-in-out;
+        -moz-transition: background 0.3s ease-in-out;
+        transition: background 0.3s ease-in-out;
+
+        &:hover {
+          color: rgba(255, 255, 255, 0.8);
+          outline: none;
+          background-color: transparent;
+        }
+
+        &:focus, &:active {
+          outline: none;
+          background-color: transparent;
+        }
+      }
+
+      &:active {
+        outline: none;
+        a {
+          background-color: rgba(255, 255, 255, 0.3);
+          color: white;
+
+          &:hover {
+            color: white;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .navbar-custom {
+    padding: 20px 0;
+    border-bottom: none;
+    background: transparent;
+    -webkit-transition: background 0.5s ease-in-out, padding 0.5s ease-in-out;
+    -moz-transition: background 0.5s ease-in-out, padding 0.5s ease-in-out;
+    transition: background 0.5s ease-in-out, padding 0.5s ease-in-out;
+  }
+  .navbar-custom.top-nav-collapse {
+    padding: 0;
+    background: transparent;
+    color: white;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  }
+}
+
+.shopping-cart {
+  font-size: 30px;
+  color: white;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+  position: relative;
+  top: 10px;
+}
+
+.badge {
+  position: relative;
+  background: #F66C37;
+  display: block;
+  top: -29px;
+  right: -23px;
+  padding: 6px 5px;
+  border-radius: 50px;
+  color: white;
+  font-size: 12px;
+  font-weight: normal;
+  line-height: 7px;
+  width: 30px;
+  background-image: linear-gradient(-179deg, #FFAE6B 0%, #EF4E20 100%);
+}
+

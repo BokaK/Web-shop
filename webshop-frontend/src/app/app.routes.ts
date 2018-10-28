@@ -6,11 +6,42 @@ import {AdminComponent} from './component/admin/admin.component';
 import {AdminOrdersComponent} from './component/admin/orders/orders.component';
 import {AdminUsersComponent} from './component/admin/users/users.component';
 import {AdminBrandsComponent} from './component/admin/brands/brands.component';
+import {UserHomeComponent} from './component/user/home/home.component';
+import {UserOrdersComponent} from './component/user/orders/orders.component';
+import {UserPartsComponent} from './component/user/parts/parts.component';
+import {ShoppingCartComponent} from './component/user/shoppingCart/shopping-cart.component';
+import {AccountInfoComponent} from './component/user/accountInfo/account-info.component';
 
 export const ROUTES: Routes = [
   {
     path: 'user',
-    component: UserComponent
+    component: UserComponent,
+    children: [
+      {
+        path: '',
+        component: UserPartsComponent
+      },
+      {
+        path: 'contact',
+        component: UserHomeComponent
+      },
+      {
+        path: 'orders',
+        component: UserOrdersComponent
+      },
+      {
+        path: 'parts',
+        component: UserPartsComponent
+      },
+      {
+        path: 'cart',
+        component: ShoppingCartComponent
+      },
+      {
+        path: 'account',
+        component: AccountInfoComponent
+      }
+    ]
   },
   {
     path: 'admin',

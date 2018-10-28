@@ -1,0 +1,62 @@
+@import '../../../helpers/typography';
+@import '../../../helpers/variables';
+
+#userPartsContainer {
+  .ui-grid-row {
+    margin-top: 12px;
+    margin-bottom: 12px;
+  }
+  h3 {
+    color: $color-active;
+  }
+
+  hr {
+    width: 80%;
+  }
+
+  .ui-inputtext, .form-control {
+    border-color: $color-separator;
+  }
+
+  .ui-slider {
+    margin-top: 7px;
+  }
+
+  #parts {
+    h3 {
+      padding-top: 10px;
+      padding-left: 10px;
+      position: absolute;
+      font-weight: bold;
+    }
+    .price {
+      text-align: right;
+      color: $color-success;
+      font-weight: bold;
+      font-size: 15px;
+    }
+
+    .ui-card-title {
+      font-size: 16px;
+    }
+
+    img {
+      height: 200px;
+    }
+
+    .ui-card-subtitle {
+      height: 60px;
+    }
+
+    .onSale {
+      text-align: right;
+    }
+
+    .priceBeforeSale {
+      text-decoration: line-through;
+      padding-right: 15px;
+      font-size: 12px;
+    }
+  }
+}
+

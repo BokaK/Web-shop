@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {User} from '../../../model/user';
 import {UserService} from '../../../service/user.service';
+import {errorMessages} from '../../../helpers/error-messages';
 
 // TODO form validation - password
 @Component({
@@ -19,8 +20,6 @@ export class AdminUsersComponent implements OnInit {
   displayDialog = false;
   deleteUserId: string;
   contactInfoForm: FormGroup;
-  errorMsgForRequiredField = 'Полето е задолжително!';
-  displayPasswordDialog = false;
   displayNewUserDialog = false;
   constructor(private userService: UserService,
               private formBuilder: FormBuilder) {
@@ -51,9 +50,12 @@ export class AdminUsersComponent implements OnInit {
     });
     this.userForm = this.formBuilder.group({
       'id' : '',
-      'email' : ['', Validators.required],
+      'email' : ['', Validators.compose([
+        Validators.required,
+        Validators.pattern('^s*?(.+)@(.+?)s*$')
+      ])],
       'enabled' : '',
-      'password' : '',
+      'password' : ['', Validators.required],
       'type' : '',
       'username' : ['', Validators.required],
       'contactInfo' : this.contactInfoForm
@@ -65,7 +67,6 @@ export class AdminUsersComponent implements OnInit {
   private getAllUsers() {
     this.userService.getAllUsers().subscribe(data => {
       this.users = data;
-      console.log(data);
     });
   }
 
@@ -76,8 +77,10 @@ export class AdminUsersComponent implements OnInit {
       return;
     }
 
+    this.displayNewUserDialog = false;
+
     if (this.ifNewUser) {
-      this.showPasswordDialog();
+      this.writeUser();
     } else {
       this.userService.updateUser(this.userForm.value).subscribe(data => {
         this.reset();
@@ -93,12 +96,13 @@ export class AdminUsersComponent implements OnInit {
   }
 
   newUser() {
+    this.showNewUserDialog();
     this.ifNewUser = true;
     this.reset();
-    this.showNewUserDialog();
   }
 
   changeUser(value) {
+    this.showNewUserDialog();
     this.ifNewUser = false;
     this.userForm.setValue(value);
   }
@@ -121,11 +125,15 @@ export class AdminUsersComponent implements OnInit {
     this.getAllUsers();
   }
 
-  showPasswordDialog() {
-    this.displayPasswordDialog = true;
-  }
-
   showNewUserDialog() {
     this.displayNewUserDialog = true;
+  }
+
+  getErrorMessage(field: FormControl) {
+    if (field.errors.required) {
+      return errorMessages.required;
+    } else if (field.errors.pattern) {
+      return errorMessages.pattern;
+    }
   }
 }
